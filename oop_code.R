@@ -1,29 +1,3 @@
-library(magrittr) # needs to be run every time you start R and want to use %>%
-library(dplyr)
-
-source("Factorial_loop.R")
-Factorial_loop(13)
-
-source("Factorial_reduce.R")
-Factorial_reduce(13)
-
-source("Factorial_func.R")
-Factorial_func(13)
-
-source("Factorial_mem.R")
-Factorial_mem(13)
-
-fac_tbl <<- c(1,rep(NA,20))
-library(microbenchmark)
-microbenchmark(loop <- Factorial_loop(20), 
-               reduce <- Factorial_reduce(20),
-               func <- Factorial_func(20),
-               memo <- Factorial_mem(20))
-####################################################
-
-
-
-
 data <- read.csv("data/MIE.csv")
 
 make_LD <- function(object){
@@ -100,23 +74,18 @@ print.summary_subject <- function(object){
         `2` = split(object$value$`2`, object$room$`2`)
     )
     object = sapply(object, function(x) sapply(x, mean, na.rm = TRUE))
-    #object = rbind(colnames(object),object)
-    #colnames(object) = NULL
     object = t(object[rowSums(is.na(object)) != ncol(object),])
     as.data.frame(object)
     rowns = rownames(object)
     rownames(object) = NULL
     colns = colnames(object)
     colnames(object) = NULL
-    #object$visit = rownames(object)
     object = cbind(as.numeric(rowns),object)
     colnames(object) = c("visit", colns)
     print(object)
 }
 
-####################################################
-
-
+#####################################
 x <- make_LD(data)
 print(class(x))
 print(x)

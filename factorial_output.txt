@@ -1,0 +1,6 @@
+Unit: nanoseconds
+expr   min    lq   mean median    uq     max neval
+loop <- Factorial_loop(20)  6000  6600   7521   7500  8100   13500   100
+reduce <- Factorial_reduce(20) 71400 72800 111337  73750 75850 3576900   100
+func <- Factorial_func(20)  6300  6800   7478   7000  7300   28800   100
+memo <- Factorial_mem(20)   500   700   1065    900  1000   18600   100
