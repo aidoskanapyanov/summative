@@ -1,3 +1,5 @@
+library(magrittr)
+
 data <- read.csv("data/MIE.csv")
 
 make_LD <- function(object){
